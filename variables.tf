@@ -27,3 +27,12 @@ variable "env_dns_zones_prefix" {
     "prd" = ""
   }
 }
+
+variable "s3_deployment_prefix" {
+  type = "map"
+
+  default = {
+    "stg" = "master"
+    "prd" = "v0.0.1-alpha.1"
+  }
+}
