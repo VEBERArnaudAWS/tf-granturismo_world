@@ -20,6 +20,13 @@ script:
   - terraform fmt -check=true -diff
   - terraform plan -input=false -out=.terraform/tfplan
 
+before_deploy:
+  - terraform taint -allow-missing aws_api_gateway_base_path_mapping.main
+  - terraform taint -allow-missing aws_api_gateway_deployment.main
+  - terraform taint -allow-missing aws_lambda_function.index
+  - terraform taint -allow-missing aws_lambda_function.about
+  - terraform plan -input=false -out=.terraform/tfplan
+
 deploy:
   skip_cleanup: true
   provider: script

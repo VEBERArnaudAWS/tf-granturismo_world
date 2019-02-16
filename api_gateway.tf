@@ -1,3 +1,7 @@
+resource "aws_api_gateway_account" "main" {
+  cloudwatch_role_arn = "${aws_iam_role.apigateway.arn}"
+}
+
 resource "aws_api_gateway_rest_api" "main" {
   name        = "${var.application}.${lookup(var.env_dns_zones_prefix, terraform.workspace)}${var.domain}"
   description = "${var.application}.${lookup(var.env_dns_zones_prefix, terraform.workspace)}${var.domain}"
@@ -6,6 +10,7 @@ resource "aws_api_gateway_rest_api" "main" {
 resource "aws_api_gateway_deployment" "main" {
   depends_on = [
     "aws_api_gateway_integration.index-get",
+    "aws_api_gateway_integration.about-get",
   ]
 
   rest_api_id = "${aws_api_gateway_rest_api.main.id}"
