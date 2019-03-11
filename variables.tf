@@ -33,6 +33,6 @@ variable "s3_deployment_prefix" {
 
   default = {
     "stg" = "master"
-    "prd" = "v0.0.1-alpha.3"
+    "prd" = "v0.0.1-alpha.4"
   }
 }
