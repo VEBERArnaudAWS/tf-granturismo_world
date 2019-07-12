@@ -1,8 +1,8 @@
 data "aws_iam_policy_document" "lambda_assume_role" {
-  statement = {
+  statement {
     effect = "Allow"
 
-    principals = {
+    principals {
       type = "Service"
 
       identifiers = [
@@ -17,10 +17,10 @@ data "aws_iam_policy_document" "lambda_assume_role" {
 }
 
 data "aws_iam_policy_document" "apigateway_assume_role" {
-  statement = {
+  statement {
     effect = "Allow"
 
-    principals = {
+    principals {
       type = "Service"
 
       identifiers = [
