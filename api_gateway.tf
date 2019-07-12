@@ -1,5 +1,11 @@
 resource "aws_api_gateway_account" "main" {
   cloudwatch_role_arn = "${aws_iam_role.apigateway.arn}"
+
+  lifecycle {
+    ignore_changes = [
+      cloudwatch_role_arn
+    ]
+  }
 }
 
 resource "aws_api_gateway_rest_api" "main" {
